@@ -1,0 +1,26 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run cap-rest-1",
+      "request": "launch",
+      "type": "node",
+      "cwd": "${workspaceFolder}/02. CAP-REST/cap-rest",
+      "runtimeExecutable": "cds",
+      "args": [
+        "serve",
+        "--in-memory?"
+      ],
+      "console": "internalConsole",
+      "internalConsoleOptions": "openOnSessionStart",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "envFile": "${workspaceFolder}/02. CAP-REST/cap-rest/.env1",
+      "env": {
+        "NODE_ENV": "development",
+        "run.config": "{\"handlerId\":\"cap_run_config_handler_id\",\"runnableId\":\"{\\\"projectPath\\\":\\\"/home/user/projects/02. CAP-REST/cap-rest\\\",\\\"profileName\\\":\\\"development\\\"}\"}"
+      }
+    }
+  ]
+}

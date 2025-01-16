@@ -1,0 +1,20 @@
+@host=localhost
+@port=4004
+@base=odata/v4/to-do-task
+
+
+### GET Call
+GET http://{{host}}:{{port}}/{{base}}/getToDos(id=1) HTTP/1.1
+
+### GET Call
+GET http://{{host}}:{{port}}/{{base}}/getToDos(id=10) HTTP/1.1
+
+### POST Call
+POST http://{{host}}:{{port}}/{{base}}/createToDos HTTP/1.1
+Content-Type: application/json
+
+{
+    "userId": 1,
+      "title": "POST From CAPM",
+      "completed": true
+}
