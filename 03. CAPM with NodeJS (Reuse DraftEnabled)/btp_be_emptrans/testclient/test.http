@@ -1,0 +1,2 @@
+### Get Employee Local details
+GET http://localhost:4004/odata/v2/employee-transactional/EmployeeLocal
