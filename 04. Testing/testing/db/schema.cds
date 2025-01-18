@@ -1,37 +1,29 @@
-namespace btp.betrans;
+namespace app.interactions;
 
 using {
+    Country,
+    Currency,
     cuid,
     managed
 } from '@sap/cds/common';
 
+type BusinessKey : String(10);
+type Price       : Decimal(10, 2);
+type Text        : String(1024);
 
-entity EMP_DUMMY : cuid, managed {
-    NAME : String(255);
-}
+entity Headers : cuid, managed {
+    items   : Composition of many Items
+                  on items.interaction = $self;
+    partner : BusinessKey;
+    country : Country;
+};
 
-//@cds.persistence.exists
-entity EMP : cuid, managed {
-    EMP_ID_EXT : String(255);
-    NAME       : String(255);
-    EMAIL_ID   : String(255);
-    //DEPARTMENT_ID : String(36);
-    DEPARTMENT : Association to one DEPARTMENT;
-}
+entity Items : cuid {
+    interaction : Association to Headers;
+    text        : localized Text;
+    date        : DateTime;
 
-//@cds.persistence.exists
-entity DEPARTMENT : cuid, managed {
-    NAME : String(50);
-}
-
-//@cds.persistence.exists
-entity EMP_DASHBOARD : cuid {
-    EMP_ID_EXT      : String(255);
-    NAME            : String(255);
-    DEPARTMENT_NAME : String(50);
-}
-
-entity EMPLOYEEDTBS : cuid, managed {
-    EMP_FRONTED_ID : String(255);
-    NAME           : String(255);
-}
+    @Semantics.amount.currencyCode: 'currency'
+    price       : Price;
+    currency    : Currency;
+};
